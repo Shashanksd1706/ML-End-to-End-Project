@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ML Performance Indicator
+name: Build and Push to ACR
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     
     steps:
@@ -21,18 +21,10 @@ jobs:
       run: |
         echo ${{ iWy+EGBODdGr8w4EFuKesjoty6BSuz2JYnIm/2fSBC+ACRAAg315 }} | docker login testdckershashank.azurecr.io --username ${{ testdckershashank }} --password-stdin
         
-    - name: Build Docker image
+    - name: Build and Push Docker image
       run: |
         docker build -t testdckershashank.azurecr.io/performanceindicator:latest .
-        docker build -t testdckershashank.azurecr.io/performanceindicator:${{ github.sha }} .
-        
-    - name: Push Docker image
-      run: |
         docker push testdckershashank.azurecr.io/performanceindicator:latest
-        docker push testdckershashank.azurecr.io/performanceindicator:${{ github.sha }}
-        
-    - name: Deploy to Azure Web App (if configured)
-      run: |
-        echo "Image pushed successfully!"
-        echo "You can now manually deploy to Azure Web App or configure additional steps"
+        echo "✅ Image successfully built and pushed to ACR!"
+
 
