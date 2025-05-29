@@ -6,7 +6,6 @@ bash
 Copy
 Edit
 ML-End-to-End-Project/
-│
 ├── .github/workflows/         # CI/CD pipelines (GitHub Actions)
 ├── config/                    # Configuration schema and settings
 ├── notebook/                  # Jupyter notebooks for experimentation
